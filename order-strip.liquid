@@ -1,0 +1,19 @@
+<section class="order-strip" id="order" data-reveal>
+  <div class="order-strip__inner">
+    <div class="order-strip__intro">
+      <span class="kicker">THREE WAYS TO ORDER</span>
+      <h2>YOUR ORDER.<br>YOUR ROUTE.</h2>
+      <div class="service-counter" data-count="3"><b data-counter data-target="3">0</b><span>ORDER OPTIONS</span></div>
+    </div>
+    <a class="order-card order-card--delivery" href="{{ section.settings.delivery_url | default: routes.root_url }}#menu" data-service-card>
+      <span class="order-card__icon">⌁</span><span class="kicker">01 / DELIVERY</span><strong>McDELIVERY</strong><small>Bring the favourites home.</small><em>ORDER ↗</em>
+    </a>
+    <a class="order-card order-card--pickup" href="{{ section.settings.pickup_url | default: routes.root_url }}#menu" data-service-card>
+      <span class="order-card__icon">◒</span><span class="kicker">02 / PICKUP</span><strong>APP PICKUP</strong><small>Skip the queue, keep the time.</small><em>START ↗</em>
+    </a>
+    <a class="order-card order-card--drive" href="{{ routes.root_url }}#restaurants" data-service-card>
+      <span class="order-card__icon">↠</span><span class="kicker">03 / DRIVE THRU</span><strong>DRIVE THRU</strong><small>Find a nearby restaurant.</small><em>FIND ↗</em>
+    </a>
+  </div>
+</section>
+{% schema %}{"name":"Order strip","settings":[{"type":"url","id":"delivery_url","label":"Delivery link"},{"type":"url","id":"pickup_url","label":"Pickup link"}],"presets":[{"name":"Order strip"}]}{% endschema %}

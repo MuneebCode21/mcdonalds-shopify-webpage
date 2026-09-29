@@ -1,0 +1,14 @@
+{
+  "sections": {
+    "hero": {"type":"hero","settings":{}},
+    "order": {"type":"order-strip","settings":{}},
+    "menu": {"type":"menu-showcase","settings":{}},
+    "deals": {"type":"deals","settings":{}},
+    "app": {"type":"app-rewards","settings":{}},
+    "story": {"type":"story","settings":{}},
+    "restaurants": {"type":"restaurants","settings":{}},
+    "family": {"type":"family","settings":{}},
+    "community": {"type":"community","settings":{}}
+  },
+  "order":["hero","order","menu","deals","app","story","restaurants","family","community"]
+}

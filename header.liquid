@@ -1,0 +1,84 @@
+<header class="site-header" data-header>
+  <div class="header-shell">
+    <a href="{{ routes.root_url }}" class="mc-logo" aria-label="McDonald's Pakistan home">
+      <span class="mc-logo__arches" aria-hidden="true">M</span>
+      <span class="mc-logo__word">McDonald's</span>
+    </a>
+
+    <nav class="desktop-nav" aria-label="Primary navigation">
+      <button type="button" data-nav-trigger="menu" aria-expanded="false">MENU <span>+</span></button>
+      <button type="button" data-nav-trigger="deals" aria-expanded="false">DEALS <span>+</span></button>
+      <button type="button" data-nav-trigger="services" aria-expanded="false">ORDER &amp; EARN <span>+</span></button>
+      <a href="{{ routes.root_url }}#restaurants">LOCATIONS</a>
+      <a href="{{ routes.root_url }}#family">FAMILY</a>
+    </nav>
+
+    <div class="header-actions">
+      <button class="header-icon" type="button" data-search-open aria-label="Search">{% render 'icon', icon:'search' %}</button>
+      <a class="header-order" href="{{ routes.root_url }}#menu">ORDER NOW <span>↗</span></a>
+      <button class="header-cart" type="button" data-cart-open aria-label="Open cart"><span class="header-cart__icon">🛍</span><b data-cart-count>{{ cart.item_count }}</b></button>
+      <button class="header-menu" type="button" data-menu-open aria-label="Open menu"><span></span><span></span></button>
+    </div>
+  </div>
+
+  <div class="mega mega--compact" data-nav-mega aria-hidden="true">
+    <div class="mega__panel">
+      <section class="mega-panel" data-nav-panel="menu">
+        <div class="mega-panel__top">
+          <div><span class="kicker">MENU</span><h3>CHOOSE YOUR<br>CRAVING.</h3></div>
+          <a class="mega-panel__all" href="{{ routes.root_url }}#menu" data-menu-jump="all">VIEW FULL MENU ↗</a>
+        </div>
+        <div class="menu-category-grid">
+          {% assign menu_categories='Breakfast|Beef|Chicken & Fish|Crispy Chicken|Wraps|Happy Meals|Extra Value Meals|Value Meals|Fries & Sides|Desserts|Beverages|McCafé|Condiments' | split:'|' %}
+          {% for category in menu_categories %}
+            <a href="{{ routes.all_products_collection_url }}/{{ category | handleize }}">
+              <span>{{ category }}</span><b>↗</b>
+            </a>
+          {% endfor %}
+        </div>
+      </section>
+
+      <section class="mega-panel" data-nav-panel="deals">
+        <div class="mega-panel__top">
+          <div><span class="kicker">DEALS &amp; OFFERS</span><h3>MORE JOY.<br>MORE VALUE.</h3></div>
+          <a class="mega-panel__all" href="{{ routes.root_url }}#deals">VIEW OFFERS ↗</a>
+        </div>
+        <div class="mega-link-row">
+          <a href="{{ routes.root_url }}#deals"><span>FEATURED OFFERS</span><b>01</b></a>
+          <a href="{{ routes.root_url }}#app"><span>APP &amp; REWARDS</span><b>02</b></a>
+          <a href="{{ routes.root_url }}#menu"><span>VALUE MEALS</span><b>03</b></a>
+        </div>
+      </section>
+
+      <section class="mega-panel" data-nav-panel="services">
+        <div class="mega-panel__top">
+          <div><span class="kicker">ORDER &amp; EARN</span><h3>YOUR WAY.<br>YOUR TIME.</h3></div>
+          <a class="mega-panel__all" href="{{ routes.root_url }}#order">START ORDER ↗</a>
+        </div>
+        <div class="mega-link-row">
+          <a href="{{ routes.root_url }}#order"><span>McDELIVERY</span><b>01</b></a>
+          <a href="{{ routes.root_url }}#app"><span>APP &amp; REWARDS</span><b>02</b></a>
+          <a href="{{ routes.root_url }}#restaurants"><span>FIND A RESTAURANT</span><b>03</b></a>
+        </div>
+      </section>
+    </div>
+  </div>
+
+  <div class="mobile-drawer" data-nav-drawer aria-hidden="true">
+    <div class="mobile-drawer__backdrop" data-menu-close></div>
+    <aside class="mobile-drawer__panel">
+      <div class="mobile-drawer__top"><span class="kicker">EXPLORE</span><button class="header-icon" type="button" data-menu-close>×</button></div>
+      <nav>
+        <a href="{{ routes.root_url }}#menu">MENU <span>↗</span></a>
+        <div class="mobile-menu-categories">
+          {% for category in menu_categories %}<a href="{{ routes.all_products_collection_url }}/{{ category | handleize }}">{{ category }} <span>↗</span></a>{% endfor %}
+        </div>
+        <a href="{{ routes.root_url }}#deals">DEALS <span>↗</span></a>
+        <a href="{{ routes.root_url }}#order">ORDER &amp; EARN <span>↗</span></a>
+        <a href="{{ routes.root_url }}#restaurants">RESTAURANTS <span>↗</span></a>
+        <a href="{{ routes.root_url }}#family">FAMILY <span>↗</span></a>
+      </nav>
+      <div class="mobile-drawer__promo"><span class="kicker">APP EXCLUSIVE</span><strong>Rewards are<br>waiting.</strong><a href="{{ routes.root_url }}#app">DOWNLOAD THE APP ↗</a></div>
+    </aside>
+  </div>
+</header>

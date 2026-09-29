@@ -1,0 +1,16 @@
+<section class="collection-list-page section-wrap" data-reveal>
+  <div class="section-heading"><div><span class="kicker">BROWSE</span><h1>ALL COLLECTIONS.</h1></div><a href="{{ routes.all_products_collection_url }}" class="text-arrow">ALL PRODUCTS ↗</a></div>
+  <div class="collection-list-grid">
+    {% for collection in collections %}
+      {% unless collection.handle == 'all' %}
+        <a class="collection-list-card" href="{{ collection.url }}">
+          <div class="collection-list-card__media">{% if collection.featured_image %}{{ collection.featured_image | image_url: width:900 | image_tag: loading:'lazy', alt:collection.title }}{% else %}<span>M</span>{% endif %}</div>
+          <div class="collection-list-card__meta"><span class="kicker">{{ collection.products_count }} ITEMS</span><h2>{{ collection.title }}</h2><span>EXPLORE ↗</span></div>
+        </a>
+      {% endunless %}
+    {% else %}
+      <a class="collection-list-card collection-list-card--empty" href="{{ routes.all_products_collection_url }}"><div class="collection-list-card__media"><span>M</span></div><div class="collection-list-card__meta"><span class="kicker">DEMO CATALOGUE</span><h2>ALL PRODUCTS</h2><span>EXPLORE ↗</span></div></a>
+    {% endfor %}
+  </div>
+</section>
+{% schema %}{"name":"Collection list"}{% endschema %}

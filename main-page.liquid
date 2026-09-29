@@ -1,0 +1,16 @@
+<section class="page-basic section-wrap page-basic--rich" data-reveal>
+  <div class="page-basic__intro"><span class="kicker">{{ page.title | default:'EXPLORE' }}</span><h1>{{ page.title | default:'Explore more.' }}</h1>
+  {% if page.content != blank %}<div class="rte">{{ page.content }}</div>{% else %}
+    <div class="page-fallback-copy"><p>This demo page is ready for live Shopify content. Until a page body is added, use these quick routes to explore the storefront.</p></div>
+  {% endif %}</div>
+  <div class="page-fallback-grid">
+    <a href="{{ routes.root_url }}#menu"><span class="kicker">01</span><strong>MENU</strong><small>Browse categories and add items to the cart.</small></a>
+    <a href="{{ routes.root_url }}#deals"><span class="kicker">02</span><strong>DEALS</strong><small>Highlight rotating offers and app moments.</small></a>
+    <a href="{{ routes.root_url }}#order"><span class="kicker">03</span><strong>ORDER</strong><small>Show delivery, pickup and drive-thru routes.</small></a>
+    <a href="{{ routes.root_url }}#restaurants"><span class="kicker">04</span><strong>LOCATIONS</strong><small>Search demo restaurant locations by city.</small></a>
+    <a href="{{ routes.root_url }}#app"><span class="kicker">05</span><strong>APP</strong><small>Keep rewards and app-only offers visible.</small></a>
+    <a href="{{ routes.root_url }}#community"><span class="kicker">06</span><strong>CONTACT</strong><small>Use this route for careers, newsroom and help.</small></a>
+  </div>
+  {% if page.content != blank %}<div class="page-basic__content rte">{{ page.content }}</div>{% endif %}
+</section>
+{% schema %}{"name":"Page"}{% endschema %}

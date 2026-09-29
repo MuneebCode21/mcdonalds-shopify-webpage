@@ -1,0 +1,50 @@
+<!doctype html>
+<html lang="{{ request.locale.iso_code | default: 'en-PK' }}" class="no-js">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <meta name="theme-color" content="#db0007">
+    <link rel="canonical" href="{{ canonical_url }}">
+    <title>{{ page_title }}{% unless page_title contains shop.name %} — {{ shop.name }}{% endunless %}</title>
+    {% if page_description %}<meta name="description" content="{{ page_description | escape }}">{% endif %}
+    {{ 'mcdonalds.css' | asset_url | stylesheet_tag }}
+    <script>
+      document.documentElement.classList.remove('no-js');
+      document.documentElement.classList.add('js');
+      window.McD = {
+        routes: {
+          cart: {{ routes.cart_url | json }},
+          cartAdd: {{ routes.cart_add_url | json }},
+          cartChange: {{ routes.cart_change_url | json }},
+          cartUpdate: {{ routes.cart_update_url | json }},
+          search: {{ routes.search_url | json }},
+          root: {{ routes.root_url | json }}
+        },
+        currencyCode: {{ cart.currency.iso_code | default: shop.currency | json }},
+        currencyFormat: {{ shop.money_format | json }}
+      };
+    </script>
+    {{ content_for_header }}
+  </head>
+  <body class="template-{{ template.name }}">
+  <div
+  class="site-progress"
+  data-site-progress
+  aria-hidden="true"
+></div>
+    <div class="custom-cursor" data-cursor aria-hidden="true"><span></span></div>
+    <div class="announcement-bar" aria-label="Store highlights">
+      <div class="announcement-bar__track" data-marquee-track>
+        <div class="announcement-bar__group"><span>McDELIVERY</span><b>•</b><span>APP REWARDS</span><b>•</b><span>LIMITED OFFERS</span><b>•</b><span>BREAKFAST</span><b>•</b><span>McCAFÉ</span><b>•</b><span>FIND A RESTAURANT</span><b>•</b></div>
+        <div class="announcement-bar__group" aria-hidden="true"><span>McDELIVERY</span><b>•</b><span>APP REWARDS</span><b>•</b><span>LIMITED OFFERS</span><b>•</b><span>BREAKFAST</span><b>•</b><span>McCAFÉ</span><b>•</b><span>FIND A RESTAURANT</span><b>•</b></div>
+      </div>
+    </div>
+    {% section 'header' %}
+    <main id="MainContent" tabindex="-1">{{ content_for_layout }}</main>
+    {% section 'footer' %}
+    <button class="back-to-top" type="button" data-back-to-top aria-label="Back to top"><span>↑</span><small>TOP</small></button>
+    {% render 'cart-drawer' %}
+    {% render 'search-drawer' %}
+    <script src="{{ 'mcdonalds.js' | asset_url }}" defer></script>
+  </body>
+</html>

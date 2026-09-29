@@ -1,0 +1,37 @@
+[
+  {
+    "name": "Brand",
+    "settings": [
+      {
+        "type": "color",
+        "id": "red",
+        "label": "Brand red",
+        "default": "#db0007"
+      },
+      {
+        "type": "color",
+        "id": "yellow",
+        "label": "Brand yellow",
+        "default": "#ffc72c"
+      },
+      {
+        "type": "color",
+        "id": "cream",
+        "label": "Cream",
+        "default": "#fff9ef"
+      },
+      {
+        "type": "color",
+        "id": "ink",
+        "label": "Ink",
+        "default": "#151515"
+      },
+      {
+        "type": "text",
+        "id": "shipping_threshold",
+        "label": "Demo free-shipping threshold",
+        "default": "5000"
+      }
+    ]
+  }
+]

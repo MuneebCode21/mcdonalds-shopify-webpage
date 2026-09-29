@@ -1,0 +1,44 @@
+<section class="menu-section" id="menu" data-reveal>
+  <div class="section-wrap">
+    <div class="section-heading">
+      <div><span class="kicker">THE MENU</span><h2>BUILD YOUR<br>OWN CRAVING.</h2></div>
+      <a href="{{ routes.root_url }}#menu" class="text-arrow" data-menu-jump="all">BROWSE MENU ↗</a>
+    </div>
+
+    <div class="category-tabs" data-menu-tabs aria-label="Menu categories">
+      <button type="button" data-menu-tab="all" class="is-active">ALL</button>
+      {% assign tabs='Breakfast|Beef|Chicken & Fish|Crispy Chicken|Wraps|Happy Meals|Extra Value Meals|Value Meals|Fries & Sides|Desserts|Beverages|McCafé|Condiments' | split:'|' %}
+      {% for tab in tabs %}<button type="button" data-menu-tab="{{ tab | handleize }}" data-menu-category-url="{{ routes.all_products_collection_url }}/{{ tab | handleize }}">{{ tab }}</button>{% endfor %}
+    </div>
+
+    {% assign menu_collection = collections[section.settings.collection] %}
+    {% unless menu_collection %}{% assign menu_collection = collections.all %}{% endunless %}
+
+    {% assign columns = section.settings.columns | plus: 0 %}
+{% if columns > 0 %}
+      <div class="menu-grid menu-grid--shopify" data-menu-products>
+        {% for product in menu_collection.products limit:50 %}
+          <div class="menu-product" data-menu-product data-menu-tags="{{ product.tags | join: '|' | downcase | escape }}" data-menu-type="{{ product.type | handleize }}">
+            {% render 'product-card', product: product %}
+          </div>
+        {% endfor %}
+      </div>
+      <div class="menu-empty-filter" data-menu-empty hidden>
+        <span class="kicker">NO ITEMS IN THIS VIEW</span>
+        <h3>TRY ANOTHER<br>CATEGORY.</h3>
+        <button type="button" class="mc-btn mc-btn--dark" data-menu-show-all>VIEW ALL MENU <span>↗</span></button>
+      </div>
+      <p class="menu-filter-note" data-menu-filter-note>SHOWING ALL MENU ITEMS</p>
+    {% else %}
+      <div class="menu-grid" data-menu-grid>
+        <article class="menu-card menu-card--static"><a href="{{ routes.root_url }}#menu" class="menu-card__media"><div class="menu-placeholder menu-placeholder--burger">M</div><span class="menu-card__plus">+</span></a><div class="menu-card__meta"><div><span class="kicker">FEATURED</span><h3>Signature Burgers</h3></div><strong>DEMO PREVIEW</strong></div></article>
+        <article class="menu-card menu-card--static"><a href="{{ routes.root_url }}#menu" class="menu-card__media"><div class="menu-placeholder menu-placeholder--chicken">+</div><span class="menu-card__plus">+</span></a><div class="menu-card__meta"><div><span class="kicker">CHICKEN</span><h3>Crispy Favourites</h3></div><strong>DEMO PREVIEW</strong></div></article>
+        <article class="menu-card menu-card--static"><a href="{{ routes.root_url }}#menu" class="menu-card__media"><div class="menu-placeholder menu-placeholder--fries">✦</div><span class="menu-card__plus">+</span></a><div class="menu-card__meta"><div><span class="kicker">SIDES</span><h3>Fries &amp; Bites</h3></div><strong>DEMO PREVIEW</strong></div></article>
+        <article class="menu-card menu-card--static"><a href="{{ routes.root_url }}#menu" class="menu-card__media"><div class="menu-placeholder menu-placeholder--coffee">☕</div><span class="menu-card__plus">+</span></a><div class="menu-card__meta"><div><span class="kicker">McCAFÉ</span><h3>Coffee Break</h3></div><strong>DEMO PREVIEW</strong></div></article>
+      </div>
+      <p class="menu-filter-note">IMPORT THE DEMO CATALOGUE TO ACTIVATE REAL PRODUCT CARDS.</p>
+    {% endif %}
+    <div class="menu-note"><span>13 MENU CATEGORIES</span><span>FILTER · DISCOVER · ORDER</span></div>
+  </div>
+</section>
+{% schema %}{"name":"Menu showcase","settings":[{"type":"collection","id":"collection","label":"Optional menu collection"}],"presets":[{"name":"Menu showcase"}]}{% endschema %}
